@@ -3,6 +3,8 @@ const userModel = require("../models/users.js");
 const bcrypt = require("bcrypt");
 const jsonwebtoken = require("jsonwebtoken");
 
+const SECRET_KEY = "CUET_CSE";
+
 const register = async (req, res) => {
     const { name, email, password } = req.body;
 
@@ -27,7 +29,7 @@ const register = async (req, res) => {
         })
 
         //creating jwt token
-        const token = jsonwebtoken.sign({email:result.email, id:result._id}, "CUET_CSE");
+        const token = jsonwebtoken.sign({email:result.email, id:result._id}, SECRET_KEY);
         console.log(token);
 
         res.status(201).json({

@@ -1,12 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRouter = require("./routers/auth_routers");
+const fileRouter = require("./routers/file_routers");
 
 const app = express();
 
 app.use(express.json());
 
 app.use("/auth", authRouter);
+app.use("/", fileRouter);
 
 mongoose.connect("mongodb+srv://sudipta_chy:AEifhi3px0V010Ml@industrialattachment.wknqysg.mongodb.net/?retryWrites=true&w=majority")
 .then(() => {
