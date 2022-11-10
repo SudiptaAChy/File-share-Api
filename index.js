@@ -6,6 +6,7 @@ const fileRouter = require("./routers/file_routers");
 const app = express();
 
 app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 
 app.use("/auth", authRouter);
 app.use("/", fileRouter);
