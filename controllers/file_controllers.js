@@ -34,4 +34,17 @@ const postFile = async (req, res) => {
     res.status(201).json({result: result});
 };
 
-module.exports = { getFiles, postFile }
+const deleteFile = async(req,res) => {
+    const id = req.params.id;
+    try {
+        const file = await fileModel.findByIdAndRemove(id);
+        res.status(202).json(id);
+    } catch (error) {
+        console.log("error");
+        req.status(500).json({message:"Something went wrong"});
+        
+    }
+
+}
+
+module.exports = { getFiles, postFile, deleteFile }
