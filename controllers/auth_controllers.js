@@ -47,7 +47,28 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
-    // [TODO] implement login logic
+    const {email, password} = req.body;
+
+    try{
+      
+        const existingUser = await userModel.findOne({email : email});
+        if(!existingUser){
+            return res.status(404).json({message: "User not Found"});
+        }
+
+        const matchPassword = await bcrypt.compare(password, existingUser.password);
+
+        if(!matchPassword){git
+            return res.status(200).json({message: "Invalid Credential"});
+        }
+
+        const token = jsonwebtoken.sign({email : existingUser.email, id : existingUser._id}, SECRET_KEY);
+        res.status(201).json({user: existingUser, token: token});
+
+    }catch(error){
+        console.log(error);
+        res.status(503).json({message: "Something went wrong"});
+    }
 }
 
 module.exports = { register, login }
