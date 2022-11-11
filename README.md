@@ -1,5 +1,7 @@
 # File sharing - Backend Server
 
+run `npm start`
+
 ***Base url = "localhost:5000"***
 
 ### Sign up
@@ -58,7 +60,7 @@ success 200
         "password": "String",
         "createdAt": "time stamp",
         "updatedAt": "time stamp",
-        "__v": int
+        "__v": "int"
     },
     "token": "String"
 }
@@ -111,7 +113,7 @@ success 200
             "sharewith": [],
             "createdAt": "String",
             "updatedAt": "String",
-            "__v": "Int"
+            "__v": "int"
         }
     ]
 }
@@ -119,9 +121,9 @@ success 200
 ```json
 Error 500
 {
-    error: true,
-    message: "Something went wrong.",
-    files: [],
+    "error": "true",
+    "message": "Something went wrong.",
+    "files": "[]",
 }
 ```
 
@@ -149,7 +151,7 @@ success 201
         "_id": "file unique id",
         "createdAt": "time stamp",
         "updatedAt": "time stamp",
-        "__v": 0
+        "__v": "int"
     }
 }
 ```
@@ -165,3 +167,6 @@ Error 400
 ### Delete a file
 ***end points = "/delete/:id"***
 <br /> request ***DELETE*** with `Authorization` header
+
+
+### Get a specific file information
