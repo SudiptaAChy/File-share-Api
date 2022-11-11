@@ -1,5 +1,7 @@
 # File sharing - Backend Server
 
+run `npm start`
+
 ***Base url = "localhost:5000"***
 
 ### Sign up
