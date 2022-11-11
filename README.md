@@ -2,7 +2,7 @@
 
 run `npm start`
 
-***Base url = "localhost:5000"***
+***Base url = "http://localhost:5000/"***
 
 ### Sign up
 -------------
@@ -85,6 +85,7 @@ error 503
 ```
 
 ### Authorization Header
+------------------------
 ```json
 {
     "Authorization" : "Bearer $token",
@@ -92,6 +93,7 @@ error 503
 ```
 
 ### Get all uploaded files list
+-------------------------------
 ***end points = "/"***
 <br /> request ***GET*** with `Authorization` header
 <br /> response
@@ -127,7 +129,37 @@ Error 500
 }
 ```
 
+### Get a specific file information
+-----------------------------------
+***end points = "/<id>"***
+<br /> request ***GET*** with `Authorization` header
+<br /> response
+```json
+success 200
+```
+{
+    "_id": "String file id",
+    "userId": "String",
+    "filename": "String",
+    "savedfilename": "String",
+    "filetype": "String",
+    "filepath": "String",
+    "filesize": "int",
+    "visibleToEveryone": "boolean",
+    "sharewith": "array",
+    "createdAt": "time stamp",
+    "updatedAt": "time stamp",
+    "__v": "int"
+}
+```json
+Error 500
+{
+    "message": "Something went wrong."
+}
+```
+
 ### Upload a file
+-----------------
 ***end points = "/upload"***
 <br /> request ***POST*** with `Authorization` header
 ```json
@@ -161,12 +193,13 @@ Error 400
 ```
 
 ### Download a file
+-------------------
 ***end points = "/download/:id"***
 <br /> request ***GET*** with `Authorization` header
 
 ### Delete a file
+-----------------
 ***end points = "/delete/:id"***
 <br /> request ***DELETE*** with `Authorization` header
 
 
-### Get a specific file information
