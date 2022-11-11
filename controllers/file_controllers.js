@@ -22,7 +22,6 @@ const postFile = async (req, res) => {
     if(req.file == null) {
         return res.status(400).json({ message: "Only image and pdf format is allowed." });
     }
-    console.log(req.file);
     const result = await fileModel.create({
         userId: req.userId,
         filename: req.file.originalname,
@@ -36,7 +35,6 @@ const postFile = async (req, res) => {
 
 const deleteFile = async(req,res) => {
     const id = req.params.id;
-    console.log("id ",id);
     try {
         const file = await fileModel.findByIdAndRemove(id);
         res.status(202).json({ message: "File deleted successfully" });
