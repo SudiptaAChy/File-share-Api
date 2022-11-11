@@ -33,17 +33,29 @@ const postFile = async (req, res) => {
     res.status(201).json({result: result});
 };
 
-const deleteFile = async(req,res) => {
+const deleteFile = async (req,res) => {
     const id = req.params.id;
     try {
         const file = await fileModel.findByIdAndRemove(id);
         res.status(202).json({ message: "File deleted successfully" });
     } catch (error) {
         console.log("error");
-        req.status(500).json({message:"Something went wrong"});
+        res.status(500).json({message:"Something went wrong."});
         
     }
 
-}
+};
 
-module.exports = { getFiles, postFile, deleteFile }
+const downloadFile = async(req, res) => {
+    const id = req.params.id;
+    try {
+        const file = await fileModel.findById(id);
+        const path = file.filepath.replace("\\", "/");
+        res.download(path);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message:"Something went wrong."});
+    }
+};
+
+module.exports = { getFiles, postFile, deleteFile, downloadFile }
