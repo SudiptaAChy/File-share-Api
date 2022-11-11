@@ -7,6 +7,6 @@ const fileRouter = express.Router();
 
 fileRouter.get("/", authentication, getFiles);
 fileRouter.post("/upload", authentication, uploadMiddleware.single('file'), postFile);
-fileRouter.delete("/:id",auth,deleteFile)
+fileRouter.delete("/delete/:id",authentication,deleteFile);
 
 module.exports = fileRouter;

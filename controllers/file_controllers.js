@@ -36,9 +36,10 @@ const postFile = async (req, res) => {
 
 const deleteFile = async(req,res) => {
     const id = req.params.id;
+    console.log("id ",id);
     try {
         const file = await fileModel.findByIdAndRemove(id);
-        res.status(202).json(id);
+        res.status(202).json({ message: "File deleted successfully" });
     } catch (error) {
         console.log("error");
         req.status(500).json({message:"Something went wrong"});
