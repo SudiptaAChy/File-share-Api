@@ -91,6 +91,13 @@ error 503
     "Authorization" : "Bearer $token",
 }
 ```
+For wrong access token
+```json
+status code 401
+{
+    "message": "Unauthorized user."
+}
+```
 
 ### Get all uploaded files list
 -------------------------------
@@ -136,7 +143,6 @@ Error 500
 <br /> response
 ```json
 success 200
-```
 {
     "_id": "String file id",
     "userId": "String",
@@ -151,6 +157,7 @@ success 200
     "updatedAt": "time stamp",
     "__v": "int"
 }
+```
 ```json
 Error 500
 {
