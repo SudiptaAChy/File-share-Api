@@ -58,4 +58,14 @@ const downloadFile = async(req, res) => {
     }
 };
 
-module.exports = { getFiles, postFile, deleteFile, downloadFile }
+const getSpecificFile = async (req,res) => {
+    const id = req.params.id;
+    try {
+        const file = await fileModel.findById(id);
+        res.status(200).json(file);
+    } catch (error) {
+        res.status(500).json({message:"Something went wrong."});
+    }
+};
+
+module.exports = { getFiles, postFile, deleteFile, downloadFile, getSpecificFile }
