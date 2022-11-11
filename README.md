@@ -196,7 +196,9 @@ success 201
 ```
 ```json
 Error 400
-"message": "Only image and pdf format is allowed.",
+{
+    "message": "Only image and pdf format is allowed."
+}
 ```
 
 ### Download a file
