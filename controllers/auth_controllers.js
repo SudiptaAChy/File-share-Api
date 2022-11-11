@@ -48,7 +48,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     const {email, password} = req.body;
-
+    
     try{
       
         const existingUser = await userModel.findOne({email : email});
@@ -58,12 +58,12 @@ const login = async (req, res) => {
 
         const matchPassword = await bcrypt.compare(password, existingUser.password);
 
-        if(!matchPassword){git
-            return res.status(200).json({message: "Invalid Credential"});
+        if(!matchPassword) {
+            return res.status(401).json({message: "Invalid Credential"});
         }
 
         const token = jsonwebtoken.sign({email : existingUser.email, id : existingUser._id}, SECRET_KEY);
-        res.status(201).json({user: existingUser, token: token});
+        res.status(200).json({user: existingUser, token: token});
 
     }catch(error){
         console.log(error);

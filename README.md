@@ -41,8 +41,45 @@ error 503
 ----------
 ***end points = "/auth/login"***
 <br /> request ***POST***
+```json
+{
+    "email" : "String",
+    "password" : "String",
+}
+```
 <br /> response
 ```json
+success 200
+{
+    "user": {
+        "_id": "String",
+        "name": "String",
+        "email": "String",
+        "password": "String",
+        "createdAt": "time stamp",
+        "updatedAt": "time stamp",
+        "__v": int
+    },
+    "token": "String"
+}
+```
+```json
+error 404
+{
+    "message": "User not Found"
+}
+```
+```json
+error 401
+{
+    "message": "Invalid Credential"
+}
+```
+```json
+error 503
+{
+    "message": "Something went wrong"
+}
 ```
 
 ### Authorization Header
@@ -120,3 +157,11 @@ success 201
 Error 400
 "message": "Only image and pdf format is allowed.",
 ```
+
+### Download a file
+***end points = "/download/:id"***
+<br /> request ***GET*** with `Authorization` header
+
+### Delete a file
+***end points = "/delete/:id"***
+<br /> request ***DELETE*** with `Authorization` header
