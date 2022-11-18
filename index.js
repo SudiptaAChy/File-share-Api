@@ -1,23 +1,29 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const cors = require("cors");
+
 const authRouter = require("./routers/auth_routers");
 const fileRouter = require("./routers/file_routers");
 
+dotenv.config();
+
 const app = express();
 
+app.use(cors);
 app.use(express.json());
 app.use("/view", express.static("uploads"));
 
 app.use("/auth", authRouter);
 app.use("/", fileRouter);
 
+const PORT = process.env.PORT || 5000;
+
 mongoose
-  .connect(
-    "mongodb+srv://sudipta_chy:AEifhi3px0V010Ml@industrialattachment.wknqysg.mongodb.net/?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGO_URL)
   .then(() => {
-    app.listen(5000, () => {
-      console.log("server started on port 5000");
+    app.listen(PORT, () => {
+      console.log("server started on port " + PORT);
     });
   })
   .catch((error) => {
